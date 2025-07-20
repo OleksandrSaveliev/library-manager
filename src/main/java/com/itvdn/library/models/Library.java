@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Library {
     private final List<User> users = new ArrayList<>();
-    private final Map<Integer, Book> bookMap = new HashMap();
+    private final Map<Integer, Book> bookMap = new HashMap<>();
 
     public Book borrowBook(int id) {
         return bookMap.remove(id);
