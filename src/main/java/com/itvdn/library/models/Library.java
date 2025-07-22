@@ -1,7 +1,10 @@
 package com.itvdn.library.models;
 
+import com.itvdn.library.AppContext;
 import com.itvdn.library.entities.Book;
 import com.itvdn.library.entities.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +13,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Library {
+    @Setter
+    private AppContext context;
+    @Getter
     private final List<User> users = new ArrayList<>();
     private final Map<Integer, Book> bookMap = new HashMap<>();
 
@@ -24,6 +30,12 @@ public class Library {
     public List<Book> getByAuthor(String author) {
         return bookMap.values().stream()
                 .filter(b -> b.getAuthor().equalsIgnoreCase(author) || b.getAuthor().contains(author))
+                .collect(Collectors.toList());
+    }
+
+    public List<Book> getByName(String name) {
+        return bookMap.values().stream()
+                .filter(b -> b.getName().equalsIgnoreCase(name) || b.getName().contains(name))
                 .collect(Collectors.toList());
     }
 

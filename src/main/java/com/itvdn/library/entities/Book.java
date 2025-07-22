@@ -11,6 +11,7 @@ public class Book implements Cloneable {
     private int id;
     private String name;
     private String author;
+    @BookFieldValidation(maxLength = 15)
     private String genre;
     private int year;
 

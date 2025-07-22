@@ -1,0 +1,44 @@
+[
+  {
+    "id": 11,
+    "name": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "genre": "Novel",
+    "year": 2023
+  },
+  {
+    "id": 2,
+    "name": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "genre": "Novel",
+    "year": 1813
+  },
+  {
+    "id": 3,
+    "name": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Fiction",
+    "year": 1925
+  },
+  {
+    "id": 4,
+    "name": "Moby-Dick",
+    "author": "Herman Melville",
+    "genre": "Adventure",
+    "year": 1851
+  },
+  {
+    "id": 5,
+    "name": "Head First Java",
+    "author": "Kathy Sierra, Bert Bates",
+    "genre": "Programming",
+    "year": 2003
+  },
+  {
+    "id": 6,
+    "name": "Effective Java",
+    "author": "Joshua Bloch",
+    "genre": "Programming",
+    "year": 2001
+  }
+]
