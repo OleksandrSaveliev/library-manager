@@ -3,6 +3,7 @@ package com.itvdn.library.models;
 import com.itvdn.library.AppContext;
 import com.itvdn.library.entities.Book;
 import com.itvdn.library.entities.User;
+import com.itvdn.library.services.LibraryDataService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +17,15 @@ public class Library {
     @Setter
     private AppContext context;
     @Getter
-    private final List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
     private final Map<Integer, Book> bookMap = new HashMap<>();
+
+    public void init() {
+        LibraryDataService libraryDataService = context.getLibraryDataService();
+        List<Book> books = libraryDataService.loadBooks();
+        books.forEach(book -> bookMap.put(book.getId(), book));
+        users = libraryDataService.loadUsers();
+    }
 
     public Book borrowBook(int id) {
         return bookMap.remove(id);

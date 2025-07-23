@@ -31,6 +31,7 @@ public class Core {
             library.setContext(context);
 
             libraryDataService.init();
+            library.init();
         } catch (IOException e) {
             logger.error(e.getMessage());
         }

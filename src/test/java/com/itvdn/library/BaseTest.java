@@ -30,7 +30,7 @@ public abstract class BaseTest {
             context.setLibrary(library);
 
             libraryDataService.init();
-
+            library.init();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
