@@ -1,12 +1,12 @@
 package com.itvdn.library.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book implements Cloneable {
     private int id;
     private String name;

@@ -68,6 +68,7 @@ public class LibraryDataService {
             for (Field field : bookClass.getDeclaredFields()) {
                 BookFieldValidation validation = field.getAnnotation(BookFieldValidation.class);
                 if (field.isAnnotationPresent(BookFieldValidation.class)) {
+                    field.setAccessible(true);
                     Object fieldValue = field.get(book);
                     if (fieldValue instanceof String) {
                         String value = (String) fieldValue;
