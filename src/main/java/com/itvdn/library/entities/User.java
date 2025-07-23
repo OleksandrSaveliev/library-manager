@@ -34,7 +34,7 @@ public class User {
         }
     }
 
-    public Set<Integer> gerUnreadBooks() {
+    public Set<Integer> getUnreadBooks() {
         return desiredBooks;
     }
 

@@ -1,11 +1,15 @@
 package com.itvdn.library;
 
+import com.itvdn.library.entities.Book;
+import com.itvdn.library.entities.User;
 import com.itvdn.library.models.Library;
 import com.itvdn.library.services.LibraryDataService;
+import com.itvdn.library.services.LibraryService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 @Slf4j
@@ -34,6 +38,18 @@ public class Core {
             library.init();
         } catch (IOException e) {
             logger.error(e.getMessage());
+        }
+    }
+
+    public void start() {
+        List<User> users = library.getUsers();
+        List<Book> books = library.getBooks();
+
+        for (User user : users) {
+            user.setDesiredBooks(books);
+            LibraryService libraryService = new LibraryService(library, user);
+            Thread thread = new Thread(libraryService, "User " + user.getId());
+            thread.start();
         }
     }
 }

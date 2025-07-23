@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class Library {
@@ -18,7 +19,7 @@ public class Library {
     private AppContext context;
     @Getter
     private List<User> users = new ArrayList<>();
-    private final Map<Integer, Book> bookMap = new HashMap<>();
+    private final Map<Integer, Book> bookMap = new ConcurrentHashMap<>();
 
     public void init() {
         LibraryDataService libraryDataService = context.getLibraryDataService();

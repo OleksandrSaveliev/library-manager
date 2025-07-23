@@ -10,5 +10,6 @@ public class Launcher {
 
         Core core = new Core();
         core.init(args[0]);
+        core.start();
     }
 }
