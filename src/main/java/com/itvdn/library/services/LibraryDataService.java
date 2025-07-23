@@ -6,14 +6,14 @@ import com.itvdn.library.AppContext;
 import com.itvdn.library.Constants;
 import com.itvdn.library.entities.Book;
 import com.itvdn.library.entities.BookFieldValidation;
+import com.itvdn.library.entities.User;
+import com.itvdn.library.entities.Users;
 import com.itvdn.library.exceptions.BookValidationException;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import javax.xml.bind.*;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -58,6 +58,33 @@ public class LibraryDataService {
             writer.write(json);
             writer.flush();
         } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    public List<User> loadUsers() {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            Users users = (Users) unmarshaller.unmarshal(new File(usersDataPath));
+            return users.getUsers();
+        } catch (JAXBException e) {
+            logger.error(e.getMessage());
+            return new ArrayList<>();
+        }
+
+    }
+
+    public void saveUsers(List<User> userList) {
+        try (FileWriter writer = new FileWriter(usersDataPath)) {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            Users users = new Users();
+            users.setUsers(userList);
+            marshaller.marshal(users, writer);
+            writer.flush();
+        } catch (IOException | JAXBException e) {
             logger.error(e.getMessage());
         }
     }

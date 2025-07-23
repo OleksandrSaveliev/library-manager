@@ -3,16 +3,23 @@ package com.itvdn.library.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
+@XmlRootElement(name = "user")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
+    @XmlAttribute(name = "id")
     private int id;
+    @XmlElement(name = "first_name")
     private String firstname;
+    @XmlElement(name = "last_name")
     private String lastname;
+    @XmlElement(name = "reading_speed")
     private int readingSpeed;
     private Set<Integer> borrowedBooks = new HashSet<>();
     private Set<Integer> desiredBooks = new HashSet<>();

@@ -1,6 +1,7 @@
 package com.itvdn.library;
 
 import com.itvdn.library.entities.Book;
+import com.itvdn.library.entities.User;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
@@ -14,6 +15,10 @@ public class LibraryDataServiceTest extends BaseTest {
         List<Book> books = libraryDataService.loadBooks();
         assertFalse(books.isEmpty());
         assertEquals(6, books.size());
+
+        List<User> users = libraryDataService.loadUsers();
+        assertFalse(users.isEmpty());
+        assertEquals(5, users.size());
     }
 
     @Test
